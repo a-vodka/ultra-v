@@ -1,0 +1,17 @@
+//---------------------------------------------------------------------------
+
+#ifndef FourierProccesH
+#define FourierProccesH
+//---------------------------------------------------------------------------
+#include <System.Classes.hpp>
+//---------------------------------------------------------------------------
+class TFourierProcces : public TThread
+{
+protected:
+	void __fastcall Execute();
+	void __fastcall FFT( double *dIn, double *amp, double* phase, const int nn );
+public:
+	__fastcall TFourierProcces(bool CreateSuspended);
+};
+//---------------------------------------------------------------------------
+#endif

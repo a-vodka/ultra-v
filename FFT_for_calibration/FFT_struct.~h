@@ -1,0 +1,26 @@
+#include "defines.h"
+#ifndef FFT_struct
+#define FFT_struct
+double *FFT( double *dIn, int nn );
+
+struct channels
+{
+    //short A;
+    //short B;
+    double t;
+    double A;
+    double B;
+    //double Ad;
+    //double Bd;
+    //void calibrate();
+};
+/*
+void channels::calibrate()
+{
+   Ad = CAa + CAb*A;
+   Bd = CBa + CBb*B;
+}
+
+*/
+
+#endif

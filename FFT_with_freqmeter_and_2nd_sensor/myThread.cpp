@@ -1,0 +1,78 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#include <math.h>
+#pragma hdrstop
+
+#include "myThread.h"
+#include "procHolder.h"
+
+#pragma package(smart_init)
+//---------------------------------------------------------------------------
+
+//   Important: Methods and properties of objects in VCL can only be
+//   used in a method called using Synchronize, for example:
+//
+//      Synchronize(UpdateCaption);
+//
+//   where UpdateCaption could look like:
+//
+//      void __fastcall MyThread::UpdateCaption()
+//      {
+//        Form1->Caption = "Updated in a thread";
+//      }
+//---------------------------------------------------------------------------
+
+__fastcall MyThread::MyThread(bool CreateSuspended)
+    : TThread(CreateSuspended)
+{
+	freq_ADC = 0;
+	Priority = tpHigher;
+}
+//---------------------------------------------------------------------------
+void __fastcall MyThread::Execute()
+{
+	#define N 16384/2
+    
+	ada.openDevice();
+	short int ReadBuf[N];
+	DWORD dwBytesRead = sizeof(ReadBuf);
+
+	double dtime = (double)ada.getNumChannels()/(double)ada.getFreq();
+	double time = 0.0;
+	int NumChannels = ada.getNumChannels();
+	channels ch;
+	while ( !Terminated )
+	{
+		ada.readData(ReadBuf, dwBytesRead);
+		for (int i = 0; i < N; i+= NumChannels)
+		{
+			#ifdef NOADC
+				const double freq = 30.0*2.0*M_PI;
+				ch.A = 1000.0*(sin(freq*time)+0.0*cos(3*freq*time))+00.0*random(500);
+				ch.B = 1000.0*(cos(2*freq*time)+0.0*sin(5*freq*time))+000.0*random(500);
+				ch.D = 1000.0*(sin(3*freq*time));
+				ch.E = 1000.0*(cos(5*freq*time));
+				ch.F = 1000.0*(sin(7*freq*time));
+			#else
+				ch.A = ReadBuf[i];
+				ch.B = ReadBuf[i + 1];
+				ch.C = ReadBuf[i + 2];
+				ch.D = ReadBuf[i + 3];
+				ch.E = ReadBuf[i + 4];
+				ch.F = ReadBuf[i + 5];
+			#endif
+			ch.t = time;
+			time += dtime;
+
+			EnterCriticalSection(&myTh->CS);
+			vect.push_back(ch);
+			LeaveCriticalSection(&myTh->CS);
+		}
+
+		freq_ADC = ch.C;
+	}
+	ada.stopADC();
+    ada.closeDevice();
+}
+//---------------------------------------------------------------------------

@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2011.03.31 11:23:30.592.cpp,C:\Users\alex\Documents\RAD Studio\Projects\Unit1.cpp=E:\VibroProj\FFT_Reader\Unit1.cpp</Transaction>
+    <Transaction>2011.03.31 11:23:30.592.h,C:\Users\alex\Documents\RAD Studio\Projects\Unit1.h=E:\VibroProj\FFT_Reader\Unit1.h</Transaction>
+    <Transaction>2011.03.31 11:23:30.592.dfm,C:\Users\alex\Documents\RAD Studio\Projects\Unit1.dfm=E:\VibroProj\FFT_Reader\Unit1.dfm</Transaction>
+    <Transaction>2011.03.31 11:23:31.972.cbproj,C:\Users\alex\Documents\RAD Studio\Projects\Project1.cbproj=E:\VibroProj\FFT_Reader\Project1.cbproj</Transaction>
+  </Transactions>
+</BorlandProject>

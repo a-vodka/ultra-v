@@ -1,0 +1,85 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#include <math.h>
+#pragma hdrstop
+
+#include "myThread.h"
+#include "procHolder.h"
+
+#pragma package(smart_init)
+//---------------------------------------------------------------------------
+
+//   Important: Methods and properties of objects in VCL can only be
+//   used in a method called using Synchronize, for example:
+//
+//      Synchronize(UpdateCaption);
+//
+//   where UpdateCaption could look like:
+//
+//      void __fastcall MyThread::UpdateCaption()
+//      {
+//        Form1->Caption = "Updated in a thread";
+//      }
+//---------------------------------------------------------------------------
+
+__fastcall MyThread::MyThread(bool CreateSuspended)
+    : TThread(CreateSuspended)
+{
+
+}
+//---------------------------------------------------------------------------
+void __fastcall MyThread::Execute()
+{
+	NameThreadForDebugging("MyThread");
+	#define N 16384/2
+
+	ada.openDevice();
+	short int ReadBuf[N];
+	DWORD dwBytesRead = sizeof(ReadBuf);
+	unsigned long int i = 0;
+	ada.startCnt();
+	double dtime = (double)ada.getNumChannels()/(double)ada.getFreq();
+	double time = 0.0;
+	double prev_time = time;
+	int NumChannels = ada.getNumChannels();
+	channels ch;
+	while ( !Terminated )
+	{
+
+            ada.readData(ReadBuf, dwBytesRead);
+            		for (int i = 0; i < N; i+= NumChannels)
+            		{
+            			#ifdef NOADC
+            				const double freq = 30.0*2.0*M_PI;
+            				ch.A = 1000.0*(sin(freq*time)+0.0*cos(3*freq*time))+00.0*random(500);
+            				ch.B = 1000.0*(cos(2*freq*time)+0.0*sin(5*freq*time))+000.0*random(500);
+            			#else
+            				ch.A = ReadBuf[i];
+            				ch.B = ReadBuf[i + 1];
+            			#endif
+            			ch.t = time;
+						time += dtime;
+
+            			EnterCriticalSection(&myTh->CS);
+            			vect.push_back(ch);
+						LeaveCriticalSection(&myTh->CS);
+					}
+
+		time += dtime;
+		double dt = time - prev_time;
+		if ( i% 25 == 0 )
+		{
+			unsigned long ncount = ada.getCnt();
+
+			inp_freq = ncount / dt;
+			prev_time = time;
+			ada.resetCnt();
+		}
+		i++;
+	}
+
+	ada.stopADC();
+    ada.closeDevice();
+}
+//---------------------------------------------------------------------------

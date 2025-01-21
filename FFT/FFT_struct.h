@@ -1,0 +1,25 @@
+#include "defines.h"
+#ifndef FFT_struct
+#define FFT_struct
+//double *FFT( double *dIn, const int nn );
+//void FFT( double *dIn, double *amp, double* phase, const int nn );
+struct channels
+{
+	double t;
+	double A;
+	double B;
+ //	double C;
+	void reset();
+};
+
+void channels::reset()
+{
+   A=0;
+   B=0;
+//   C=0;
+   t=0;
+}
+
+
+
+#endif

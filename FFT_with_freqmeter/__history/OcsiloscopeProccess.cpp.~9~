@@ -1,0 +1,62 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+
+#include "OcsiloscopeProccess.h"
+#pragma package(smart_init)
+//---------------------------------------------------------------------------
+
+//   Important: Methods and properties of objects in VCL can only be
+//   used in a method called using Synchronize, for example:
+//
+//      Synchronize(&UpdateCaption);
+//
+//   where UpdateCaption could look like:
+//
+//      void __fastcall TOcsiloscopeProccess::UpdateCaption()
+//      {
+//        Form1->Caption = "Updated in a thread";
+//      }
+//---------------------------------------------------------------------------
+
+__fastcall TOcsiloscopeProccess::TOcsiloscopeProccess(bool CreateSuspended)
+	: TThread(CreateSuspended)
+{
+}
+//---------------------------------------------------------------------------
+void __fastcall TOcsiloscopeProccess::Execute()
+{
+	NameThreadForDebugging("OcsiloscopeProccess");
+    int numadd = 0; // количичество точек на графике
+
+	while (!Terminated)
+	{
+		deque<channels> *pDeque = & myTh->postTh->resultList;
+
+		EnterCriticalSection(&myTh->CS2);
+		int n = pDeque->size();
+		for (int i=0;i<n;i++)
+    	{
+        	channels ch = pDeque->front();
+//        furVect.push_back(ch);
+		if (i%10==0) // выполняем прореживание -- берем каждую десятую
+        {
+           Series1->AddXY(ch.t,ch.A);
+		   Series2->AddXY(ch.t,ch.B);
+           numadd++;
+        }
+		pDeque->pop_front();
+    }
+
+	int numpoint = 500*(TrackBar1->Position);
+	while (numadd > numpoint)
+    {
+		Series1->Delete(0);
+		Series2->Delete(0);
+        numadd--;
+	}
+
+    }
+}
+//---------------------------------------------------------------------------

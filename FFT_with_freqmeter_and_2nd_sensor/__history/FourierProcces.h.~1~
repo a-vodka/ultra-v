@@ -1,0 +1,16 @@
+//---------------------------------------------------------------------------
+
+#ifndef FourierProccesH
+#define FourierProccesH
+//---------------------------------------------------------------------------
+#include <System.Classes.hpp>
+//---------------------------------------------------------------------------
+class TFourierProcces : public TThread
+{
+protected:
+	void __fastcall Execute();
+public:
+	__fastcall TFourierProcces(bool CreateSuspended);
+};
+//---------------------------------------------------------------------------
+#endif

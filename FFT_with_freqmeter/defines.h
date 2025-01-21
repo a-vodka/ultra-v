@@ -1,0 +1,38 @@
+
+#ifndef definesH
+#define definesH
+
+/* new Sensor
+#define AZeroOffset (1.565)
+#define BZeroOffset (AZeroOffset)
+
+#define ASensetivity (0.2/9.8)
+#define BSensetivity (0.2/9.8)
+ */
+// Old Sensor
+ #define BZeroOffset 2.472
+ #define AZeroOffset 2.487
+
+ #define ASensetivity (0.31/9.8)
+ #define BSensetivity (0.5/9.8)
+
+
+#define ADA_BASE_FREQ 3.5e5
+#define ADA_BASE_FREQ_C 3.580e5
+
+
+#define FUR_MAX (1<<16)
+
+#define TO_VOLT   6.1038882E-04
+
+#define F_MAX 420.0
+
+#define CROP_SIZE (1.0/5.0) // Относительная величина обрезки результата при определениии амплитуды при обратном БПФ
+
+#define NOICE_RATE_ADC 		4
+#define NOICE_RATE_VOLT 	NOICE_RATE_ADC*TO_VOLT
+#define NOICE_RATE_ACCEL 	NOICE_RATE_ADC*TO_VOLT/max(ASensetivity,BSensetivity)
+
+//#define NOADC
+
+#endif

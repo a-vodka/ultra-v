@@ -1,0 +1,228 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+//#define _USE_MATH_DEFINES
+
+#include <math.h>
+
+#pragma hdrstop
+#include "fft.cpp"
+#include "FourierProcces.h"
+#pragma package(smart_init)
+//---------------------------------------------------------------------------
+
+//   Important: Methods and properties of objects in VCL can only be
+//   used in a method called using Synchronize, for example:
+//
+//      Synchronize(&UpdateCaption);
+//
+//   where UpdateCaption could look like:
+//
+//      void __fastcall TFourierProcces::UpdateCaption()
+//      {
+//        Form1->Caption = "Updated in a thread";
+//      }
+//---------------------------------------------------------------------------
+
+__fastcall TFourierProcces::TFourierProcces(bool CreateSuspended)
+	: TThread(CreateSuspended)
+{
+}
+//---------------------------------------------------------------------------
+void __fastcall TFourierProcces::Execute()
+{
+	NameThreadForDebugging("FourierProcces");
+	//---- Place thread code here ----
+}
+//---------------------------------------------------------------------------
+
+void __fastcall ProccessFurier()
+{
+/*	const num_of_blocks = 8;
+	const num_min_max = FUR_MAX/num_of_blocks;
+
+	double AMax[num_of_blocks]={0};
+	double AMin[num_of_blocks]={0};
+	double BMax[num_of_blocks]={0};
+	double BMin[num_of_blocks]={0};
+
+
+	double maxa,maxb,mina,minb;    // максимум и минимум по каналам
+
+	for (int i=0;i<FUR_MAX;i++)      // ищем минимум и максимум по каждому каналу попутно копируя в массивы
+	{
+		channels ch = furVect.front();
+		Ach_buf[i] = ch.A;
+		Bch_buf[i] = ch.B;
+		furVect.pop_front();
+	}
+
+	for (int j = 0; j < num_of_blocks; j++)
+	{
+		maxa = maxb = -MAXDOUBLE - 1;
+		mina = minb = MAXDOUBLE - 1;
+		for (int i = j*num_min_max; i < num_min_max*(j+1); i++)
+		{
+			maxa = max(Ach_buf[i],maxa);
+			maxb = max(Bch_buf[i],maxb);
+			mina = min(Ach_buf[i],mina);
+			minb = min(Bch_buf[i],minb);
+		}
+
+		AMax[j]=maxa;
+		BMax[j]=maxb;
+		AMin[j]=mina;
+		BMin[j]=minb;
+
+	}
+	maxa = maxb = 0;
+	mina = minb = 0;
+	for (int j = 0; j < num_of_blocks; j++)
+	{
+		maxa += AMax[j]/num_of_blocks;
+		maxb += BMax[j]/num_of_blocks;
+
+		mina += AMin[j]/num_of_blocks;
+		minb += BMin[j]/num_of_blocks;
+
+	}
+
+
+//	FFT(Ach_buf, A_Amp, A_Phase, FUR_MAX);  // БПФ для А
+//	FFT(Bch_buf, B_Amp, B_Phase, FUR_MAX);  // БПФ для Б
+
+	Series3->Clear();  //чистим графики
+	Series4->Clear();
+
+	// определяем частоту дискретизации
+	double freq = AdaThread->ada.getFreq()/AdaThread->ada.getNumChannels()/(double)FUR_MAX;
+    int maxfreqindex = 1000.0/freq;
+	switch (freqDim) {
+
+		break;
+		case FreqDim::frRPM:
+			freq *= 60.0;
+		break;
+		case FreqDim::frRadPS:
+			freq *= 2*M_PI;
+		break;
+
+		case FreqDim::frHz:
+		default:
+		// nothing to do
+		break;
+		;
+	}
+	double rms = 0;
+	double f = 0;
+	double a = 0, b = 0;
+	// выводим результаты
+	for (int i = 1;i < maxfreqindex; i++)
+	{
+	   f = i * freq;
+	   if (CheckBox1->Checked)
+	   {
+			a = A_Phase[i];
+			b = B_Phase[i];
+	   }
+	   else
+	   {
+			a = A_Amp[i] / FUR_MAX * 2.0;
+			b = B_Amp[i] / FUR_MAX * 2.0;
+			rms += a*a/2.0;
+       }
+
+	   Series3->AddXY(f, a);
+	   Series4->AddXY(f, b);
+	}
+	double AmpA = (maxa - mina);
+	double AmpB = (maxb - minb);
+
+	rms = sqrt(rms);
+
+	Edit1->Text = FloatToStr(AmpA);
+	Edit2->Text = FloatToStr(AmpB);
+
+	Label1->Caption = FloatToStr(rms);
+	Label2->Caption = FloatToStr(rms*sqrt(2.0));
+	*/
+}
+
+
+
+
+void __fastcall TFourierProcces::FFT( double *dIn, double *amp, double* phase, const int nn )
+{
+    int i, j, n, m, mmax, istep;
+    double tempr, tempi, wtemp, theta, wpr, wpi, wr, wi;
+
+    int isign = -1;
+	double* data = new double [ nn * 2 + 1 ];
+
+    for( i = 0; i < nn; i++ )
+    {
+        data[ i * 2 ] = 0;
+        data[ i * 2 + 1 ] = dIn[ i ];
+	}
+
+    n = nn << 1;
+    j = 1;
+    i = 1;
+    while( i < n )
+    {
+        if( j > i )
+        {
+            tempr = data[ i ]; data[ i ] = data[ j ]; data[ j ] = tempr;
+            tempr = data[ i + 1 ]; data[ i + 1 ] = data[ j + 1 ]; data[ j + 1 ] = tempr;
+        }
+        m = n >> 1;
+        while( ( m >= 2 ) && ( j > m ) )
+        {
+            j = j - m;
+            m = m >> 1;
+        }
+        j = j + m;
+        i = i + 2;
+    }
+    mmax = 2;
+    while( n > mmax )
+    {
+        istep = 2 * mmax;
+        theta = 2.0 * M_PI / ( isign * mmax );
+        wtemp = sin( 0.5 * theta );
+        wpr = -2.0 * wtemp * wtemp;
+        wpi = sin( theta );
+        wr = 1.0;
+        wi = 0.0;
+        m = 1;
+        while( m < mmax )
+        {
+            i = m;
+            while( i < n )
+            {
+                j = i + mmax;
+                tempr = wr * data[ j ] - wi * data[ j + 1 ];
+                tempi = wr * data[ j + 1 ] + wi * data[ j ];
+                data[ j ] = data[ i ] - tempr;
+                data[ j + 1 ] = data[ i + 1 ] - tempi;
+                data[ i ] = data[ i ] + tempr;
+                data[ i + 1 ] = data[ i + 1 ] + tempi;
+                i = i + istep;
+            }
+            wtemp = wr;
+            wr = wtemp * wpr - wi * wpi + wr;
+            wi = wi * wpr + wtemp * wpi + wi;
+            m = m + 2;
+        }
+        mmax = istep;
+    }
+
+
+	for( i = 0; i < ( nn / 2 ); i++ )
+	{
+		amp[ i ] = sqrt( data[ i * 2 ] * data[ i * 2 ] + data[ i * 2 + 1 ] * data[ i * 2 + 1 ] );
+		phase[ i ] = atan2(  data[ i * 2 + 1 ], data[ i * 2 ] );
+	}
+    delete []data;
+
+}

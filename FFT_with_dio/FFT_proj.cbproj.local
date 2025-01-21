@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.291,=E:\VibroProj\FFT\Unit1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.766,=E:\VibroProj\FFT\Unit1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.282,E:\VibroProj\FFT_with_dio\ADA1406DLL5_0.lib=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.641,=E:\VibroProj\FFT\Unit1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.191,E:\VibroProj\FFT\FourierProcces.h=E:\VibroProj\FFT\Unit1.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.419,E:\VibroProj\FFT\FourierProccess.h=E:\VibroProj\FFT\FourierProcces.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.066,=E:\VibroProj\FFT\FFT_class.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.609,=E:\VibroProj\FFT_with_dio\ADA1406DLL5_0.lib</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.127,E:\VibroProj\FFT_with_dio\ADA1406DLL5_0.lib=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.570,=E:\VibroProj\FFT\Profiling\AQtimeModule1.aqt</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.419,E:\VibroProj\FFT\FourierProccess.cpp=E:\VibroProj\FFT\FourierProcces.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.461,=E:\VibroProj\FFT_with_dio\ADA1406DLL5_0.lib</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.289,E:\VibroProj\FFT_with_dio\ADA1406DLL5_0.lib=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.316,E:\VibroProj\FFT_with_dio\ADA1406DLL5_0.lib=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.910,=E:\VibroProj\FFT_with_dio\ADA1406DLL5_0.lib</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.327,E:\VibroProj\FFT\procHolder.h=E:\VibroProj\FFT\Unit1.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.752,E:\VibroProj\FFT\OcsiloscopeProccess.h=E:\VibroProj\FFT\Unit1.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.204,=E:\VibroProj\FFT_with_dio\ADA5.lib</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.201,E:\VibroProj\FFT\furier.cpp=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.191,E:\VibroProj\FFT\FourierProcces.cpp=E:\VibroProj\FFT\Unit1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.327,E:\VibroProj\FFT\procHolder.cpp=E:\VibroProj\FFT\Unit1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.752,E:\VibroProj\FFT\OcsiloscopeProccess.cpp=E:\VibroProj\FFT\Unit1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.lib,E:\VibroProj\FFT\ADA1406DLL5_0.lib=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.192,=E:\VibroProj\FFT_with_dio\myThread.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.054,E:\VibroProj\FFT_with_dio\Profiling\AQtimeModule1.aqt=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.lib,E:\VibroProj\FFT\ADA1406DLL4_0.lib=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.993,E:\VibroProj\FFT_with_dio\myThread.cpp=</Transaction>
+    <Transaction>2012.10.02 10:12:28.634,=E:\VibroProj\FFT_with_dio\Unit1.cpp</Transaction>
+    <Transaction>2012.10.02 10:13:46.334,E:\VibroProj\FFT_with_dio\CounterTh.h=E:\VibroProj\FFT_with_dio\Unit1.h</Transaction>
+    <Transaction>2012.10.02 10:13:46.334,E:\VibroProj\FFT_with_dio\CounterTh.cpp=E:\VibroProj\FFT_with_dio\Unit1.cpp</Transaction>
+  </Transactions>
+	<ProjectSortOrder AutoSort="0" SortType="0">
+    <File Path="adaADC.cpp"/>
+    <File Path="defines.h"/>
+    <File Path="FFT.cpp"/>
+    <File Path="FFT.cpp"/>
+    <File Path="FFT.dfm"/>
+    <File Path="FFT.h"/>
+    <File Path="FFT_proj.cpp"/>
+    <File Path="FFT_proj.res"/>
+    <File Path="FFT_struct.h"/>
+    <File Path="FourierProccess.cpp"/>
+    <File Path="FourierProccess.cpp"/>
+    <File Path="FourierProccess.h"/>
+    <File Path="OcsiloscopeProccess.cpp"/>
+    <File Path="OcsiloscopeProccess.cpp"/>
+    <File Path="OcsiloscopeProccess.h"/>
+    <File Path="PostProcTh.cpp"/>
+    <File Path="procHolder.cpp"/>
+    <File Path="procHolder.cpp"/>
+    <File Path="procHolder.h"/>
+    <File Path="FFT_class.cpp"/>
+    <File Path="ADA5.lib"/>
+    <File Path="myThread.cpp"/>
+    <File Path="myThread.cpp"/>
+    <File Path="myThread.h"/>
+    <File Path="CounterTh.cpp"/>
+    <File Path="CounterTh.cpp"/>
+    <File Path="CounterTh.h"/>
+  </ProjectSortOrder>
+</BorlandProject>

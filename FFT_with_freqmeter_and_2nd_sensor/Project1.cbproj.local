@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.986,=E:\VibroProj\FFT\FFT.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.417,=E:\VibroProj\FFT\ADA1406DLL5_0.lib</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.003,=E:\VibroProj\FFT\myThread.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.949,=E:\VibroProj\FFT\adaADC.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.359,=C:\Users\AlexLT\Documents\RAD Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.998,=E:\VibroProj\FFT\furier.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.010,=E:\VibroProj\FFT\PostProcTh.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.566,=C:\Users\AlexLT\Documents\RAD Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.962,C:\Users\AlexLT\Documents\RAD Studio\Projects\Project1.cbproj=E:\VibroProj\FFT\Project1.cbproj</Transaction>
+  </Transactions>
+</BorlandProject>

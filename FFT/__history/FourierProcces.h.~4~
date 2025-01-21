@@ -1,0 +1,28 @@
+//---------------------------------------------------------------------------
+
+#ifndef FourierProccesH
+#define FourierProccesH
+//---------------------------------------------------------------------------
+#include <System.Classes.hpp>
+//---------------------------------------------------------------------------
+class TFourierProcces : public TThread
+{
+protected:
+	void __fastcall Execute();
+	void __fastcall FFT( double *dIn, double *amp, double* phase, const int nn );
+	void __fastcall plotFFT(double *A, double *B, UINT n);
+
+	double Ach_buf[FUR_MAX];  // выделяем буфер для канала А
+	double Bch_buf[FUR_MAX];  // выделяем буфер для канала Б
+	double A_Amp[FUR_MAX/2];
+	double A_Phase[FUR_MAX/2];
+
+	double B_Amp[FUR_MAX/2];
+	double B_Phase[FUR_MAX/2];
+
+
+public:
+	__fastcall TFourierProcces(bool CreateSuspended);
+};
+//---------------------------------------------------------------------------
+#endif

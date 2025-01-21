@@ -1,0 +1,65 @@
+//---------------------------------------------------------------------------
+
+
+#ifndef procHolderH
+#define procHolderH
+
+#include "myThread.h"
+#include "PostProcTh.h"
+#include "FourierProccess.h"
+#include "OcsiloscopeProccess.h"
+
+class TProccessHolder
+{
+	MyThread* m_adaTh;
+	TPostProcThread* m_postTh;
+	TFourierProcces* m_fourierTh;
+	TOcsiloscopeProccess* m_osciloscope;
+public:
+	CRITICAL_SECTION CS;
+	CRITICAL_SECTION CS2;
+
+	TProccessHolder()
+	{
+		InitializeCriticalSection(&CS);
+		InitializeCriticalSection(&CS2);
+
+		m_adaTh = new MyThread(true);
+		m_postTh = new TPostProcThread(false);
+		m_fourierTh = new TFourierProcces(false);
+		m_osciloscope = new TOcsiloscopeProccess(false);
+
+	}
+
+	~TProccessHolder()
+	{
+		m_postTh->Terminate();
+		m_postTh->WaitFor();
+
+		m_fourierTh->Terminate();
+		m_fourierTh->WaitFor();
+
+		m_osciloscope->Terminate();
+		m_osciloscope->WaitFor();
+
+		m_adaTh->Resume();
+		m_adaTh->Terminate();
+		m_adaTh->WaitFor();
+
+
+		delete m_adaTh;
+		delete m_postTh;
+		delete m_fourierTh;
+        delete m_osciloscope;
+		DeleteCriticalSection(&CS);
+		DeleteCriticalSection(&CS2);
+	}
+	__property MyThread* adaTh  = { read= m_adaTh};
+	__property TPostProcThread* postTh  = { read= m_postTh};
+	__property TFourierProcces* fourierTh  = { read= m_fourierTh};
+};
+
+extern PACKAGE TProccessHolder *myTh;
+
+//---------------------------------------------------------------------------
+#endif

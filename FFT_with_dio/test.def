@@ -1,0 +1,31 @@
+LIBRARY     ADA1406DLL5_0.DLL
+
+EXPORTS
+    ADC14USB_CloseDevice          = _ADC14USB_CloseDevice@0             
+    ADC14USB_DMAMode              = _ADC14USB_DMAMode@4                 
+    ADC14USB_GetInformationDevice = _ADC14USB_GetInformationDevice@12      
+    ADC14USB_GetInformationDeviceANSI= _ADC14USB_GetInformationDeviceANSI@12      
+    ADC14USB_GetNumberDevices     = _ADC14USB_GetNumberDevices@4        
+    ADC14USB_GetVersion           = _ADC14USB_GetVersion@0              
+    ADC14USB_OpenDevice           = _ADC14USB_OpenDevice@4              
+    ADC14USB_ProcessDACSingle     = _ADC14USB_ProcessDACSingle@16       
+    ADC14USB_ProcessDACWrite      = _ADC14USB_ProcessDACWrite@8         
+    ADC14USB_ProcessDioRead       = _ADC14USB_ProcessDioRead@8          
+    ADC14USB_ProcessDioSingleRead = _ADC14USB_ProcessDioSingleRead@8      
+    ADC14USB_ProcessDioSingleWrite= _ADC14USB_ProcessDioSingleWrite@8      
+    ADC14USB_ProcessDioWrite      = _ADC14USB_ProcessDioWrite@4         
+    ADC14USB_QuickReadDIN         = _ADC14USB_QuickReadDIN@8            
+    ADC14USB_ReadCntN             = _ADC14USB_ReadCntN@8                
+    ADC14USB_ReadData             = _ADC14USB_ReadData@8                
+    ADC14USB_ReadEE               = _ADC14USB_ReadEE@8                  
+    ADC14USB_ReadFirmwareVersion  = _ADC14USB_ReadFirmwareVersion@8      
+    ADC14USB_ReadLogicChannels    = _ADC14USB_ReadLogicChannels@12      
+    ADC14USB_ReadLogicChannels_1  = _ADC14USB_ReadLogicChannels_1@12      
+    ADC14USB_ResetCntN            = _ADC14USB_ResetCntN@4               
+    ADC14USB_SOFTReadADC          = _ADC14USB_SOFTReadADC@8             
+    ADC14USB_SetFreqADC           = _ADC14USB_SetFreqADC@4              
+    ADC14USB_SetupCntN            = _ADC14USB_SetupCntN@16              
+    ADC14USB_StartStopADC14       = _ADC14USB_StartStopADC14@4          
+    ADC14USB_StartStopCntN        = _ADC14USB_StartStopCntN@8           
+    ADC14USB_StopQkRdDIN          = _ADC14USB_StopQkRdDIN@0             
+    ADC14USB_WriteSwitchStack     = _ADC14USB_WriteSwitchStack@8        

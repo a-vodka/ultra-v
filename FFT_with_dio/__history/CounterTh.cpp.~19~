@@ -1,0 +1,44 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+#include "procHolder.h"
+#include "CounterTh.h"
+#pragma package(smart_init)
+//---------------------------------------------------------------------------
+
+//   Important: Methods and properties of objects in VCL can only be
+//   used in a method called using Synchronize, for example:
+//
+//      Synchronize(&UpdateCaption);
+//
+//   where UpdateCaption could look like:
+//
+//      void __fastcall TCounter::UpdateCaption()
+//      {
+//        Form1->Caption = "Updated in a thread";
+//      }
+//---------------------------------------------------------------------------
+
+__fastcall TCounter::TCounter(bool CreateSuspended)
+	: TThread(CreateSuspended)
+{
+}
+//---------------------------------------------------------------------------
+void __fastcall TCounter::Execute()
+{
+	NameThreadForDebugging("CounterThread");
+	double time_s, time_e;
+	while ( !Terminated )
+	{
+		time_e = time_s;
+		time_s = GetTime();
+		double dt = 24*3600*(time_s - time_e);
+		unsigned long ncount = myTh->adaTh->ada.getCnt();
+		myTh->adaTh->inp_freq = ncount / dt;
+		Sleep(100);
+		myTh->adaTh->ada.resetCnt();
+
+    }
+}
+//---------------------------------------------------------------------------

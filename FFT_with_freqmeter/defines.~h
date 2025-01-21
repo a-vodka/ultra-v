@@ -1,0 +1,22 @@
+//#define CBa 0
+//#define CBb 1
+
+//#define CAa 0
+//#define CAb 1
+
+#define CBa -73.714727
+#define CBb 0.037501133
+
+#define CAa -54.436384
+#define CAb 0.027939975
+
+
+#define ADA_BASE_FREQ 3.5e5
+#define ADA_BASE_FREQ_C 3.07e5
+
+#define FUR_MAX 65536
+
+#define AinV   0.00020346294
+#define BinV   0.00061038882
+
+
